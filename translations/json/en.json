@@ -1,0 +1,41 @@
+{
+  "onboarding": {
+    "title": "Enjoy fresh seafood. Anytime",
+    "details": "Enter your details"
+  },
+  "navbar": {
+    "menu": "Menu",
+    "reservation": "Reservation",
+    "points": "Ocean Points",
+    "profile": "Profile"
+  },
+  "field": {
+    "name": "Name",
+    "phone": "Phone number",
+    "description": "Description",
+    "birth": "Date of birth"
+  },
+  "placeholder": {
+    "name": "Enter name",
+    "phone": "+81 90 1234 5678",
+    "date": "Date",
+    "selectDate": "Select date",
+    "time": "Time",
+    "selectTime": "Select time"
+  },
+  "button": {
+    "continue": "Continue",
+    "contPh": "Continue with phone number",
+    "done": "Done",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "back": "< Back",
+    "save": "Save"
+  },
+  "error": {
+    "empty": "Fields cannot be empty!",
+    "correct": "Please fill all fields correctly",
+    "phoneValid": "Phone must have + and 11 digits"
+  }
+}
