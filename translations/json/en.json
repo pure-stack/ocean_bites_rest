@@ -9,6 +9,17 @@
     "points": "Ocean Points",
     "profile": "Profile"
   },
+  "points": {
+    "title": "You have",
+    "pointsText": "Ocean Points is a flexible rewards program designed to thank our loyal guests.\n\n\uD83D\uDCA1 How It Works:\u2028\n\uD83D\uDCF2 Scan a QR code during each visit to collect points.\n\uD83C\uDF7D\uFE0F Earn points for dining in, takeout, or online orders.\n\uD83C\uDFAF Exchange your points for delicious rewards like free dishes or discounts.\n\n\uD83D\uDC1A Example Rewards:\n\n100 points → Free dessert\n200 points → Free appetizer\n300 points → 20% off your bill\n500 points → Free main course\n\n⏱\uFE0F QR codes are single-use and refreshed daily to prevent reuse",
+    "qr": "Show this QR-code to the waiter \u2028to earn Ocean Points or get your reward",
+    "rewards": {
+      "freeDesert": "\uD83C\uDF70 Free Dessert",
+      "freeStarter": "\uD83E\uDD57 Free Starter",
+      "20off": "\uD83D\uDCB8 20% Off",
+      "freeMain": "\uD83E\uDD9E Free Main Coursew"
+    }
+  },
   "field": {
     "name": "Name",
     "phone": "Phone number",
@@ -31,7 +42,12 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "back": "< Back",
-    "save": "Save"
+    "save": "Save",
+    "redeem": "Redeem",
+    "redeemRew": "Redeem rewards",
+    "scanQr": "Scan QR to earn",
+    "scanQrCode": "Scan QR-code",
+    "backToApp": "Back to App"
   },
   "error": {
     "empty": "Fields cannot be empty!",

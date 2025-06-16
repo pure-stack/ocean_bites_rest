@@ -1,14 +1,14 @@
 import {Dimensions, Platform, StyleSheet} from 'react-native'
 import PageWithHeader from '@/components/PageWithHeader'
-import {LineChart} from 'react-native-chart-kit'
-import {Colors} from '@/constants/Colors'
-import {Defs, LinearGradient, Stop} from 'react-native-svg'
 import {usePromiseState} from '@/hooks/usePromiseState'
-import {IExpenses} from '@/types/expenses'
-import {getItem, removeItem} from '@/utils/AsyncStorage'
-import {EXPENSES, IS_ONBOARDING_PASSED} from '@/constants/localstorage'
+import {getItem} from '@/utils/AsyncStorage'
+import {USER} from '@/constants/localstorage'
 import LoaderPage from '@/components/ui/LoaderPage'
-import Text from '@/components/ui/Text'
+import {IProfile} from '@/types/profile'
+import ProfileDetails from '@/components/profile/ProfileDetails'
+import {useEffect, useState} from 'react'
+import EditProfileDetails from '@/components/profile/EditProfileDetails'
+import {useIsFocused} from '@react-navigation/native'
 
 const screenWidth = Dimensions.get('window').width
 
@@ -37,37 +37,41 @@ const parseDateForReactNative = (dateString: string) => {
 
 export default function TabTwoScreen() {
     const {
-        data: expenses,
-        isLoading
-    } = usePromiseState<IExpenses[]>(() => getItem(EXPENSES), [])
+        data: profile,
+        isLoading, refresh
+    } = usePromiseState<IProfile[]>(() => getItem(USER), [])
 
-    const expensesByDate = expenses.sort((a, b) => {
-        const dateA = parseDateForReactNative(a.date).getTime()
-        const dateB = parseDateForReactNative(b.date).getTime()
-        return dateA - dateB
-    })
+    const [isEdit, setIsEdit] = useState(false)
 
-    const allAmounts = expensesByDate?.map(expense => expense.amount).map(str => parseFloat(str.replace(/[^0-9.-]/g, '')))
-
-    const allLabels = formatDatesCustom(expensesByDate.map(exp => exp.date))
-    const isEnough = allAmounts.length > 1
-
-    const originalData = {
-        labels: isEnough ? allLabels : [...allLabels, ...allLabels],
-        datasets: [
-            {
-                data: isEnough ? allAmounts : [0, ...allAmounts],
-            }
-        ],
+    const handleStartEdit = () => {
+        setIsEdit(true)
     }
+
+    const handleCancelEdit = () => {
+        setIsEdit(false)
+    }
+
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+        if (isFocused) {
+            setIsEdit(false)
+        }
+    }, [isFocused]);
 
     if (isLoading) {
         return <LoaderPage/>
     }
 
+    if (isEdit) {
+        return <EditProfileDetails profile={profile[0]}
+                                   handleCancelEdit={handleCancelEdit} refresh={refresh}/>
+    }
+
     return (
-      <PageWithHeader title={'navbar.statistics'}>
-         <Text text={'profile'} />
+      <PageWithHeader title={'navbar.profile'} rightBtnText={'button.edit'} onPressRightBtn={handleStartEdit}>
+          <ProfileDetails data={profile[0]} handleChange={() => {
+          }} isEdit={false}/>
       </PageWithHeader>
     )
 }

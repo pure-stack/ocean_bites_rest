@@ -7,10 +7,11 @@ import React from 'react'
 interface IProfileDetailsProps {
     data: IProfile;
     handleChange: (value: string, field: string) => void;
+    isEdit?: boolean;
 }
 
 const ProfileDetails = (props: IProfileDetailsProps) => {
-    const {data, handleChange} = props
+    const {data, handleChange, isEdit = false} = props
 
 
     return (
@@ -22,12 +23,12 @@ const ProfileDetails = (props: IProfileDetailsProps) => {
           width: '100%',
           marginTop: 40
       }}>
-          <TextInputWithTitle value={data.name} onChange={value => handleChange(value, 'name')} text={'field.name'}
+          <TextInputWithTitle editable={isEdit} value={data.name} onChange={value => handleChange(value, 'name')} text={'field.name'}
                               placeholder={'placeholder.name'}/>
-          <TextInputWithTitle value={data.phone} onChange={value => handleChange(value, 'phone')}
+          <TextInputWithTitle editable={isEdit} value={data.phone} onChange={value => handleChange(value, 'phone')}
                               text={'field.phone'}
                               keyboardType={'number-pad'} placeholder={'placeholder.phone'}/>
-          <DatePickerCustom selectedDate={data.dateOfBirth.toString()} placeholderText={''}
+          <DatePickerCustom editable={isEdit} selectedDate={data.dateOfBirth.toString()} placeholderText={''}
                             labelText={'field.birth'}
                             handleChange={value => handleChange(value, 'dateOfBirth')}/>
       </ScrollView>

@@ -2,7 +2,7 @@ import {StyleSheet, View} from 'react-native'
 import {useEffect, useState} from 'react'
 import {Image} from 'expo-image'
 import Button from '@/components/ui/Buttons/ButtonCommon'
-import {setItem} from '@/utils/AsyncStorage'
+import {addItem, setItem} from '@/utils/AsyncStorage'
 import {IS_ONBOARDING_PASSED, USER} from '@/constants/localstorage'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import Text from '@/components/ui/Text'
@@ -45,9 +45,10 @@ const Onboarding = () => {
         }
         setError('')
         await setItem(IS_ONBOARDING_PASSED, true)
-        await setItem(USER, {
+        await addItem(USER, {
             ...data,
             id: getRandomId()
+        }, () => {
         })
         // @ts-ignore
         router.replace(ROUTES.MENU)
@@ -59,7 +60,7 @@ const Onboarding = () => {
             paddingBottom: insets.bottom + 40
         }}>
             <Text text={'onboarding.details'} type={'title2'}/>
-            <ProfileDetails data={data} handleChange={handleChange}/>
+            <ProfileDetails data={data} handleChange={handleChange} isEdit />
             {error && <Text text={error} textColor={Colors.light.error}/>}
             <View style={{
                 height: 50,

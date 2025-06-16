@@ -5,13 +5,15 @@ interface IDeleteProps {
     title: string;
     bgColor: string;
     onPress: () => void;
+    disabled?: boolean;
 }
 
 const ButtonCommon = (props: IDeleteProps) => {
-    const {title, bgColor, onPress} = props
+    const {title, bgColor, onPress, disabled = false} = props
 
     return (
       <Pressable
+        disabled={disabled}
         onPress={onPress}
         style={{
             width: '100%',
@@ -19,12 +21,12 @@ const ButtonCommon = (props: IDeleteProps) => {
             borderRadius: 12,
             padding: 12,
             borderWidth: 0,
-            outline: 'none',
+            opacity: disabled ? 0.4 : 1,
             backgroundColor: bgColor,
-            flex: 1
+            flex: 1,
         }}
       >
-          <Text text={title} />
+          <Text text={title}/>
       </Pressable>
     )
 }

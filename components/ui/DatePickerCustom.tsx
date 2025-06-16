@@ -10,10 +10,11 @@ interface IDatePickerProps {
     mode?: 'date' | 'time' | 'datetime'
     display?: 'default' | 'compact' | 'inline' | 'spinner';
     handleChange: (text: string) => void;
+    editable?: boolean;
 }
 
 const DatePickerCustom = (props: IDatePickerProps) => {
-    const {selectedDate, mode = 'date', placeholderText, labelText, display, handleChange} = props
+    const {selectedDate, mode = 'date', placeholderText, labelText, display, handleChange, editable = true} = props
 
 
     return (
@@ -21,7 +22,7 @@ const DatePickerCustom = (props: IDatePickerProps) => {
           <View style={styles.container}>
               <Text text={labelText}/>
 
-              <DateTimePicker value={selectedDate ? new Date(selectedDate) : new Date()} mode={mode} display={display}
+              <DateTimePicker disabled={!editable} value={selectedDate ? new Date(selectedDate) : new Date()} mode={mode} display={display}
                               style={styles.pickerContainer}
                               accentColor={Colors.light.placeholder}
                               onChange={(event, date) => handleChange(date ? date.toString() : '')}
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'column',
-        gap: 6,
+        gap: 6
     },
     inputContainer: {
         borderRadius: 10,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     pickerContainer: {
-        left: -24
+        left: -10
     }
 })
 

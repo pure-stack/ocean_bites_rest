@@ -13,7 +13,7 @@ const TextButton = (props: ITextButtonProps) => {
 
     return (
       <Pressable onPress={onPress}>
-          <Text text={text} textColor={Colors.light.icon} styles={{...textStyles.title}}/>
+          <Text text={text} textColor={Colors.light.primary} styles={{...textStyles.title}}/>
       </Pressable>
 
     )

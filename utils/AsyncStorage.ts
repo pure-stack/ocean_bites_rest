@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {IOceanRewards} from '@/types/points'
 
 export const addItem = async <T>(key: string, value: T, callback: () => void) => {
     try {
@@ -59,5 +60,31 @@ export const getItem = async (key: string) => {
     } catch (error) {
         console.error('Error getting item:', error)
         return null
+    }
+}
+
+export const updatePoints = async (key: string, points: number, field: string, callback: () => void) => {
+    try {
+        const currentValue = await getItem(key)
+        if (currentValue === null) {
+            await setItem(key, [{
+                total: points,
+                [field]: true
+            }])
+            callback()
+            return
+        }
+        const updatedItems = currentValue.map((item: IOceanRewards) => {
+              return {
+                  ...item,
+                  total: item.total + points,
+                  [field]: true
+              }
+          }
+        )
+        await setItem(key, updatedItems)
+        callback()
+    } catch (error) {
+        console.error('Error removing item:', error)
     }
 }

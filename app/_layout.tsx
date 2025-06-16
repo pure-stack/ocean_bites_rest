@@ -36,7 +36,7 @@ export default function RootLayout() {
         dark: true,
         colors: {
             primary: 'rgb(10, 132, 255)',
-            background: 'rgb(31, 32, 36)',
+            background: 'rgb(21, 21, 24)',
             card: 'rgb(18, 18, 18)',
             text: 'rgb(229, 229, 231)',
             border: 'rgb(39, 39, 41)',

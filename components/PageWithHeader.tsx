@@ -41,6 +41,9 @@ const PageWithHeader = (props: IPageWithHeaderProps) => {
               {rightBtnText && <View style={{...styles.buttonContainer, ...styles.rightButton}}>
                   <TextButton text={rightBtnText} onPress={onPressRightBtn}/>
               </View>}
+              {rightBtn && <View style={{...styles.buttonContainer, ...styles.rightButton}}>
+                  {rightBtn}
+              </View>}
           </View>
 
           {children}
@@ -56,7 +59,8 @@ const styles = StyleSheet.create({
         position: 'relative',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingVertical: 10
     },
     buttonContainer: {
         position: 'absolute'
@@ -69,6 +73,8 @@ const styles = StyleSheet.create({
     },
     titleContainer: {
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontSize: 17,
+        fontWeight: 600
     }
 })

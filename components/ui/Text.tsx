@@ -25,7 +25,7 @@ const Text = (props: ITextProps) => {
           type === 'regular' ? css.regular : undefined,
           type === 'semibold' ? css.semibold : undefined,
           type === 'bold' ? css.bold : undefined,
-          type === 'h1' ? css.h1 : undefined,
+          type === 'h3' ? css.h3 : undefined,
           styles
       ]}>{t(text)}</TextRN>
     )
@@ -39,9 +39,8 @@ const css = StyleSheet.create({
         lineHeight: 24
     },
     title: {
-        fontSize: 17,
-        fontWeight: 'semibold',
-        lineHeight: 22
+        fontSize: 20,
+        fontWeight: 600,
     },
     title2: {
         fontSize: 28,
@@ -59,9 +58,8 @@ const css = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold'
     },
-    h1: {
+    h3: {
         fontSize: 24,
-        fontWeight: 'bold',
-        lineHeight: 33
+        fontWeight: 500
     }
 })

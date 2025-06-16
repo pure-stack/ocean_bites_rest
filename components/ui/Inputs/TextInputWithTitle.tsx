@@ -12,10 +12,20 @@ interface ITextInputWithTitleProps {
     inputMode?: InputModeOptions
     keyboardType?: KeyboardTypeOptions
     additionalStyles?: any;
+    editable?: boolean;
 }
 
 const TextInputWithTitle = (props: ITextInputWithTitleProps) => {
-    const {value, onChange, text, placeholder, inputMode = 'text', keyboardType = 'default', additionalStyles} = props
+    const {
+        value,
+        onChange,
+        text,
+        placeholder,
+        inputMode = 'text',
+        keyboardType = 'default',
+        additionalStyles,
+        editable = true
+    } = props
     const {t} = useTranslation()
 
     const maxLength = (keyboardType === 'number-pad' || keyboardType === 'phone-pad') ? 12 : 30
@@ -23,7 +33,7 @@ const TextInputWithTitle = (props: ITextInputWithTitleProps) => {
     return (
       <View style={[styles.container, additionalStyles]}>
           <Text text={text} type={'title'}/>
-          <RNTextInput defaultValue={value} onChangeText={onChange} keyboardType={keyboardType}
+          <RNTextInput editable={editable} defaultValue={value} onChangeText={onChange} keyboardType={keyboardType}
                        style={styles.input}
                        placeholder={t(placeholder)} placeholderTextColor={Colors.light.placeholder}
                        maxLength={maxLength}/>
