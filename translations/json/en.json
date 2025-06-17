@@ -9,6 +9,22 @@
     "points": "Ocean Points",
     "profile": "Profile"
   },
+  "reservation": {
+    "title": "Reservation",
+    "editTitle": "Edit Reservation",
+    "orderSummary": "Order summary",
+    "confirmed": "Reservation confirmed!",
+    "thankYou": "Thank you, {{name}}!",
+    "tableBooked": "Your table has been successfully booked",
+    "tableBookedFor": "for {{dateTime}}.",
+    "welcomeGuests": "We're excited to welcome you and your guests",
+    "guestCount": "({{guests}} people) to Ocean Bites!",
+    "pleaseNote": "🦪 Please note:",
+    "arriveEarly": "• Arrive 10 minutes early to secure your table.",
+    "allergyAlert": "• Allergy alert? Inform staff upon arrival.",
+    "seeYouSoon": "See you soon for a fresh seafood experience! 🍤",
+    "newBooking": "New booking"
+  },
   "points": {
     "title": "You have",
     "pointsText": "Ocean Points is a flexible rewards program designed to thank our loyal guests.\n\n\uD83D\uDCA1 How It Works:\u2028\n\uD83D\uDCF2 Scan a QR code during each visit to collect points.\n\uD83C\uDF7D\uFE0F Earn points for dining in, takeout, or online orders.\n\uD83C\uDFAF Exchange your points for delicious rewards like free dishes or discounts.\n\n\uD83D\uDC1A Example Rewards:\n\n100 points → Free dessert\n200 points → Free appetizer\n300 points → 20% off your bill\n500 points → Free main course\n\n⏱\uFE0F QR codes are single-use and refreshed daily to prevent reuse",
@@ -24,7 +40,12 @@
     "name": "Name",
     "phone": "Phone number",
     "description": "Description",
-    "birth": "Date of birth"
+    "birth": "Date of birth",
+    "dateTocome": "Date to come",
+    "timeTocome": "Time to come",
+    "guests": "Guests",
+    "specialRequest": "Special Request",
+    "dateTime": "Date & time"
   },
   "placeholder": {
     "name": "Enter name",
@@ -32,7 +53,11 @@
     "date": "Date",
     "selectDate": "Select date",
     "time": "Time",
-    "selectTime": "Select time"
+    "selectTime": "Select time",
+    "enterName": "Enter your name",
+    "enterPhone": "Enter phone number",
+    "guestsCount": "Number of attendants",
+    "specialRequest": "e.g., Window seat"
   },
   "button": {
     "continue": "Continue",
@@ -52,6 +77,9 @@
   "error": {
     "empty": "Fields cannot be empty!",
     "correct": "Please fill all fields correctly",
-    "phoneValid": "Phone must have + and 11 digits"
+    "phoneValid": "Phone must have + and 11 digits",
+    "date": "Please select a date",
+    "time": "Please select a time",
+    "guests": "Please specify number of guests"
   }
 }

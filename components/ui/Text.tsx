@@ -27,6 +27,7 @@ const Text = (props: ITextProps) => {
           type === 'bold' ? css.bold : undefined,
           type === 'h3' ? css.h3 : undefined,
           type === 'subtitle' ? css.subtitle : undefined,
+          type === 'reservation' ? css.reservation : undefined,
           styles
       ]}>{t(text)}</TextRN>
     )
@@ -68,5 +69,10 @@ const css = StyleSheet.create({
         fontSize: 17,
         lineHeight: 22,
         letterSpacing: -0.43
+    },
+    reservation: {
+        fontWeight: 400,
+        fontSize: 17,
+        letterSpacing: -0.41
     }
 })

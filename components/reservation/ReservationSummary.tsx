@@ -25,34 +25,34 @@ const ReservationSummary = (props: IReservationSummaryProps) => {
     }
 
     return (
-      <PageWithHeader title={'Reservation'}>
+      <PageWithHeader title={'reservation.title'}>
           <View style={styles.container}>
-              <Text text={'Order summary'} type={'h2'} styles={styles.title}/>
+              <Text text={'reservation.orderSummary'} type={'h2'} styles={styles.title}/>
               
               <View style={styles.summaryCard}>
                   <View style={styles.summaryRow}>
-                      <Text text={'Name'} type={'subtitle'} textColor={Colors.light.textDesc}/>
+                      <Text text={'field.name'} type={'subtitle'} textColor={Colors.light.textDesc}/>
                       <Text text={reservation.name} type={'subtitle'} textColor={Colors.light.text}/>
                   </View>
                   
                   <View style={styles.summaryRow}>
-                      <Text text={'Phone number'} type={'subtitle'} textColor={Colors.light.textDesc}/>
+                      <Text text={'field.phone'} type={'subtitle'} textColor={Colors.light.textDesc}/>
                       <Text text={reservation.phone} type={'subtitle'} textColor={Colors.light.text}/>
                   </View>
                   
                   <View style={styles.summaryRow}>
-                      <Text text={'Date & time'} type={'subtitle'} textColor={Colors.light.textDesc}/>
+                      <Text text={'field.dateTime'} type={'subtitle'} textColor={Colors.light.textDesc}/>
                       <Text text={formatDateTime()} type={'subtitle'} textColor={Colors.light.text}/>
                   </View>
                   
                   <View style={[styles.summaryRow, !reservation.specialRequest && styles.lastRow]}>
-                      <Text text={'Guests'} type={'subtitle'} textColor={Colors.light.textDesc}/>
+                      <Text text={'field.guests'} type={'subtitle'} textColor={Colors.light.textDesc}/>
                       <Text text={reservation.guests.toString()} type={'subtitle'} textColor={Colors.light.text}/>
                   </View>
                   
                   {reservation.specialRequest && (
                       <View style={[styles.summaryRow, styles.lastRow]}>
-                          <Text text={'Special request'} type={'subtitle'} textColor={Colors.light.textDesc}/>
+                          <Text text={'field.specialRequest'} type={'subtitle'} textColor={Colors.light.textDesc}/>
                           <Text text={reservation.specialRequest} type={'subtitle'} textColor={Colors.light.text}/>
                       </View>
                   )}
@@ -61,7 +61,7 @@ const ReservationSummary = (props: IReservationSummaryProps) => {
           
           <View style={styles.buttonContainer}>
               <ButtonCommon 
-                  title={'Continue'} 
+                  title={'button.continue'} 
                   onPress={onContinue}
                   bgColor={Colors.light.primary}
               />

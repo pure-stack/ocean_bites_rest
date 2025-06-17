@@ -10,8 +10,6 @@ interface IReservationDetailsProps {
     isEdit?: boolean;
 }
 
-
-
 const ReservationDetails = (props: IReservationDetailsProps) => {
     const {data, handleChange, isEdit = false} = props
 
@@ -28,17 +26,17 @@ const ReservationDetails = (props: IReservationDetailsProps) => {
             editable={isEdit} 
             value={data.name} 
             onChange={value => handleChange(value, 'name')} 
-            text={'Name'}
-            placeholder={'Enter your name'}
+            text={'field.name'}
+            placeholder={'placeholder.enterName'}
           />
           
           <TextInputWithTitle 
             editable={isEdit} 
             value={data.phone} 
             onChange={value => handleChange(value, 'phone')}
-            text={'Phone number'}
+            text={'field.phone'}
             keyboardType={'phone-pad'} 
-            placeholder={'Enter phone number'}
+            placeholder={'placeholder.enterPhone'}
           />
           
           <View style={{
@@ -46,40 +44,40 @@ const ReservationDetails = (props: IReservationDetailsProps) => {
             flexDirection: 'row',
             gap: 20,
           }}>
-                      <DatePickerCustom 
-            editable={isEdit} 
-            selectedDate={data.dateTocome.toString()} 
-            placeholderText={''}
-            labelText={'Date to come'}
-            handleChange={value => handleChange(value, 'dateTocome')}
-            allowFutureDates={true}
-          />
+              <DatePickerCustom 
+                editable={isEdit} 
+                selectedDate={data.dateTocome.toString()} 
+                placeholderText={''}
+                labelText={'field.dateTocome'}
+                handleChange={value => handleChange(value, 'dateTocome')}
+                allowFutureDates={true}
+              />
             
-            <DatePickerCustom 
+              <DatePickerCustom 
                 editable={isEdit} 
                 selectedDate={data.timeTocome.toString()} 
                 placeholderText={''}
-                labelText={'Time to come'}
+                labelText={'field.timeTocome'}
                 handleChange={value => handleChange(value, 'timeTocome')}
                 mode={'time'}
-            />
-        </View>
+              />
+          </View>
           
           <TextInputWithTitle 
             editable={isEdit} 
-            value={''}
+            value={data.guests.toString()}
             onChange={value => handleChange(value, 'guests')}
-            text={'Guests'}
+            text={'field.guests'}
             keyboardType={'number-pad'}
-            placeholder={'Number of attendants'}
+            placeholder={'placeholder.guestsCount'}
           />
           
           <TextInputWithTitle 
             editable={isEdit} 
             value={data.specialRequest} 
             onChange={value => handleChange(value, 'specialRequest')}
-            text={'Special Request'}
-            placeholder={'e.g., Window seat'}
+            text={'field.specialRequest'}
+            placeholder={'placeholder.specialRequest'}
           />
       </ScrollView>
     )

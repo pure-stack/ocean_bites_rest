@@ -51,7 +51,7 @@ const AddEditReservation = (props: IAddEditReservationProps) => {
         }
     }
 
-    const title = reservation ? 'Edit Reservation' : 'Reservation'
+    const title = reservation ? 'reservation.editTitle' : 'reservation.title'
 
     return (
       <PageWithHeader title={title}>
@@ -65,7 +65,7 @@ const AddEditReservation = (props: IAddEditReservationProps) => {
           
           <View style={styles.buttonContainer}>
               <ButtonCommon 
-                  title={'Continue'} 
+                  title={'button.continue'} 
                   onPress={handleSaveReservation}
                   bgColor={Colors.light.primary}
               />
@@ -76,6 +76,10 @@ const AddEditReservation = (props: IAddEditReservationProps) => {
 
 const styles = StyleSheet.create({
     buttonContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 20,
+        marginTop: 'auto',
         height: 50,
     }
 })

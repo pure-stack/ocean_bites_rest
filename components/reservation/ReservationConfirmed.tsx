@@ -25,37 +25,51 @@ const ReservationConfirmed = (props: IReservationConfirmedProps) => {
     }
 
     return (
-      <PageWithHeader title={'Reservation'}>
+      <PageWithHeader title={'reservation.title'}>
           <View style={styles.container}>
-              <Text text={'Reservation confirmed!'} type={'h2'} styles={styles.title}/>
+              <Text text={'reservation.confirmed'} type={'h2'} styles={styles.title}/>
               
               <View style={styles.content}>
-                  <Text text={`Thank you, ${reservation.name}!`} type={'default'} styles={styles.thankYouText}/>
+                  <Text text={`Thank you, ${reservation.name}!`} type={'reservation'} styles={styles.thankYouText}/>
                   
-                  <Text 
-                      text={`Your table has been successfully booked for ${formatDateTime()}.`} 
-                      type={'default'} 
-                      styles={styles.bookingText}
-                  />
+                  <View style={styles.bookingTextContainer}>
+                      <Text 
+                          text={'reservation.tableBooked'} 
+                          type={'reservation'} 
+                          styles={styles.bookingText}
+                      />
+                      <Text 
+                          text={`for ${formatDateTime()}.`} 
+                          type={'reservation'} 
+                          styles={styles.bookingText}
+                      />
+                  </View>
                   
-                  <Text 
-                      text={`We're excited to welcome you and your guests (${reservation.guests} people) to Ocean Bites!`} 
-                      type={'default'} 
-                      styles={styles.welcomeText}
-                  />
+                  <View style={styles.welcomeTextContainer}>
+                      <Text 
+                          text={'reservation.welcomeGuests'} 
+                          type={'reservation'} 
+                          styles={styles.welcomeText}
+                      />
+                      <Text 
+                          text={`(${reservation.guests} people) to Ocean Bites!`} 
+                          type={'reservation'} 
+                          styles={styles.welcomeText}
+                      />
+                  </View>
                   
                   <View style={styles.noteSection}>
-                      <Text text={'🗒️ Please note:'} type={'default'} styles={styles.noteTitle}/>
+                      <Text text={'reservation.pleaseNote'} type={'reservation'} styles={styles.noteTitle}/>
                       
                       <View style={styles.bulletPoints}>
-                          <Text text={'• Arrive 10 minutes early to secure your table.'} type={'default'} styles={styles.bulletText}/>
-                          <Text text={'• Allergy alert? Inform staff upon arrival.'} type={'default'} styles={styles.bulletText}/>
+                          <Text text={'reservation.arriveEarly'} type={'reservation'} styles={styles.bulletText}/>
+                          <Text text={'reservation.allergyAlert'} type={'reservation'} styles={styles.bulletText}/>
                       </View>
                   </View>
                   
                   <Text 
-                      text={'See you soon for a fresh seafood experience! 🦞'} 
-                      type={'default'} 
+                      text={'reservation.seeYouSoon'} 
+                      type={'reservation'} 
                       styles={styles.closingText}
                   />
               </View>
@@ -63,7 +77,7 @@ const ReservationConfirmed = (props: IReservationConfirmedProps) => {
           
           <View style={styles.buttonContainer}>
               <ButtonCommon 
-                  title={'New booking'} 
+                  title={'reservation.newBooking'} 
                   onPress={onNewBooking}
                   bgColor={Colors.light.primary}
               />
@@ -80,30 +94,35 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         marginBottom: 40,
-        fontSize: 28,
-        fontWeight: 'bold'
+        fontSize: 24,
+        fontWeight: 700,
+        lineHeight: 28,
+        letterSpacing: 0.35
     },
     content: {
         flex: 1,
-        gap: 20
+        maxHeight: 230,
     },
     thankYouText: {
         fontSize: 18,
         lineHeight: 24,
         marginBottom: 10
     },
+    bookingTextContainer: {
+        marginBottom: 15
+    },
     bookingText: {
         fontSize: 16,
         lineHeight: 22
     },
-    welcomeText: {
-        fontSize: 16,
-        lineHeight: 22,
+    welcomeTextContainer: {
         marginBottom: 20
     },
+    welcomeText: {
+        fontSize: 16,
+        lineHeight: 22
+    },
     noteSection: {
-        marginTop: 10,
-        marginBottom: 20
     },
     noteTitle: {
         fontSize: 16,
@@ -124,8 +143,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     buttonContainer: {
-        marginTop: 'auto',
-        paddingBottom: 40
+        height: 50,
     }
 })
 
