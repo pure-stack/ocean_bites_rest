@@ -1,5 +1,5 @@
-import {StyleSheet, Text as TextRN} from 'react-native'
-import {useTranslation} from 'react-i18next'
+import { useTranslation } from 'react-i18next';
+import { StyleSheet, Text as TextRN } from 'react-native';
 
 interface ITextProps {
     text: string;
@@ -26,6 +26,7 @@ const Text = (props: ITextProps) => {
           type === 'semibold' ? css.semibold : undefined,
           type === 'bold' ? css.bold : undefined,
           type === 'h3' ? css.h3 : undefined,
+          type === 'subtitle' ? css.subtitle : undefined,
           styles
       ]}>{t(text)}</TextRN>
     )
@@ -61,5 +62,11 @@ const css = StyleSheet.create({
     h3: {
         fontSize: 24,
         fontWeight: 500
+    },
+    subtitle: {
+        fontWeight: 400,
+        fontSize: 17,
+        lineHeight: 22,
+        letterSpacing: -0.43
     }
 })

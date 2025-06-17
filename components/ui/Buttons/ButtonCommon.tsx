@@ -1,5 +1,5 @@
-import {Pressable} from 'react-native'
-import Text from '@/components/ui/Text'
+import Text from '@/components/ui/Text';
+import { Pressable } from 'react-native';
 
 interface IDeleteProps {
     title: string;

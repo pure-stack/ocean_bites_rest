@@ -1,21 +1,60 @@
-import PageWithHeader from '@/components/PageWithHeader'
-import Text from '@/components/ui/Text'
+import AddEditReservation from '@/components/reservation/AddEditReservation'
+import ReservationConfirmed from '@/components/reservation/ReservationConfirmed'
+import ReservationSummary from '@/components/reservation/ReservationSummary'
+import { RESERVATIONS } from '@/constants/localstorage'
+import { usePromiseState } from '@/hooks/usePromiseState'
+import { IReservation } from '@/types/reservation'
+import { getItem } from '@/utils/AsyncStorage'
+import { useState } from 'react'
 
-interface IIdeasProps {
+export default function Reservation() {
+    const {
+        data: reservations,
+        isLoading, 
+        refresh
+    } = usePromiseState<IReservation[]>(() => getItem(RESERVATIONS), [])
 
-}
+    const [currentStep, setCurrentStep] = useState<'form' | 'summary' | 'confirmed'>('form')
+    const [savedReservation, setSavedReservation] = useState<IReservation | null>(null)
 
-const Reservation = (props: IIdeasProps) => {
-    const {} = props
+    const handleShowSummary = (reservation: IReservation) => {
+        setSavedReservation(reservation)
+        setCurrentStep('summary')
+    }
 
-    // const [assets, error] = useAssets(require('../../assets/pdf/ideas.pdf'))
+    const handleContinueFromSummary = () => {
+        setCurrentStep('confirmed')
+    }
+
+    const handleNewBooking = () => {
+        setSavedReservation(null)
+        setCurrentStep('form')
+    }
+
+    if (currentStep === 'confirmed' && savedReservation) {
+        return (
+            <ReservationConfirmed 
+                reservation={savedReservation}
+                onNewBooking={handleNewBooking}
+            />
+        )
+    }
+
+    if (currentStep === 'summary' && savedReservation) {
+        return (
+            <ReservationSummary 
+                reservation={savedReservation}
+                onContinue={handleContinueFromSummary}
+            />
+        )
+    }
 
     return (
-      <PageWithHeader title={'navbar.ideas'} disablePagePadding>
-          <Text text={'bla lbla'}/>
-          {/*<WebView uri={assets?.[0].uri ?? ''}/>*/}
-      </PageWithHeader>
+        <AddEditReservation 
+            reservation={undefined} 
+            handleClose={() => {}} 
+            refresh={refresh}
+            onSuccess={handleShowSummary}
+        />
     )
 }
-
-export default Reservation
