@@ -10,8 +10,8 @@ const INITIAL_STATE: IReservation = {
     id: '',
     name: '',
     phone: '',
-    dateTocome: '',
-    timeTocome: '',
+    dateTocome: new Date().toString(),
+    timeTocome: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }),
     guests: 1,
     specialRequest: ''
 }
