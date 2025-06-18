@@ -1,12 +1,16 @@
+import { USER } from '@/constants/localstorage'
+import { IProfile } from '@/types/profile'
 import { IReservation } from '@/types/reservation'
+import { getItem } from '@/utils/AsyncStorage'
 import { formatSimplePhoneNumber, getPhoneValidationError, isValidPhoneNumber } from '@/utils/formatters'
-import { useCallback, useState } from 'react'
+import { useIsFocused } from '@react-navigation/native'
+import { useCallback, useEffect, useState } from 'react'
 
 const INITIAL_STATE: IReservation = {
     id: '',
     name: '',
     phone: '',
-    dateTocome: new Date(),
+    dateTocome: '',
     timeTocome: '',
     guests: 1,
     specialRequest: ''
@@ -14,6 +18,35 @@ const INITIAL_STATE: IReservation = {
 
 export const useReservationForm = (initState?: IReservation) => {
     const [data, setData] = useState<IReservation>(initState ? initState : INITIAL_STATE)
+    const [isProfileLoaded, setIsProfileLoaded] = useState(false)
+    const isFocused = useIsFocused()
+
+    useEffect(() => {
+        const loadProfileData = async () => {
+            try {
+                const profile: IProfile[] = await getItem(USER)
+                if (profile && profile.length > 0 && profile[0]) {
+                    const userData = profile[0]
+                    setData(prev => ({
+                        ...prev,
+                        name: userData.name || '',
+                        phone: userData.phone || ''
+                    }))
+                }
+                setIsProfileLoaded(true)
+            } catch (error) {
+                console.error('Error loading profile data:', error)
+                setIsProfileLoaded(true)
+            }
+        }
+
+        if (!initState && isFocused) {
+            setIsProfileLoaded(false)
+            loadProfileData()
+        } else if (initState) {
+            setIsProfileLoaded(true)
+        }
+    }, [initState, isFocused])
 
     const isValid = () => {
         return data.name.length > 0 &&
@@ -64,5 +97,5 @@ export const useReservationForm = (initState?: IReservation) => {
 
     const clearForm = () => setData(INITIAL_STATE)
 
-    return {data, handleChange, isValid, clearForm, getValidationError}
+    return {data, handleChange, isValid, clearForm, getValidationError, isProfileLoaded}
 } 

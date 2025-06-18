@@ -1,8 +1,8 @@
-import {InputModeOptions, KeyboardTypeOptions, StyleSheet, TextInput as RNTextInput, View} from 'react-native'
-import {useTranslation} from 'react-i18next'
-import React from 'react'
 import Text from '@/components/ui/Text'
-import {Colors} from '@/constants/Colors'
+import { Colors } from '@/constants/Colors'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { InputModeOptions, KeyboardTypeOptions, TextInput as RNTextInput, StyleSheet, View } from 'react-native'
 
 interface ITextInputWithTitleProps {
     value: string;

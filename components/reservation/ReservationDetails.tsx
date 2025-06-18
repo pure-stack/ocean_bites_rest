@@ -8,10 +8,11 @@ interface IReservationDetailsProps {
     data: IReservation;
     handleChange: (value: any, field: string) => void;
     isEdit?: boolean;
+    isNewReservation?: boolean;
 }
 
 const ReservationDetails = (props: IReservationDetailsProps) => {
-    const {data, handleChange, isEdit = false} = props
+    const {data, handleChange, isEdit = false, isNewReservation = false} = props
 
     return (
       <ScrollView contentContainerStyle={{
@@ -23,7 +24,7 @@ const ReservationDetails = (props: IReservationDetailsProps) => {
           marginTop: 40
       }}>
           <TextInputWithTitle 
-            editable={isEdit} 
+            editable={isEdit && !isNewReservation} 
             value={data.name} 
             onChange={value => handleChange(value, 'name')} 
             text={'field.name'}
@@ -31,7 +32,7 @@ const ReservationDetails = (props: IReservationDetailsProps) => {
           />
           
           <TextInputWithTitle 
-            editable={isEdit} 
+            editable={isEdit && !isNewReservation} 
             value={data.phone} 
             onChange={value => handleChange(value, 'phone')}
             text={'field.phone'}

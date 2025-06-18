@@ -1,6 +1,7 @@
 import PageWithHeader from '@/components/PageWithHeader'
 import ReservationDetails from '@/components/reservation/ReservationDetails'
 import ButtonCommon from '@/components/ui/Buttons/ButtonCommon'
+import LoaderPage from '@/components/ui/LoaderPage'
 import Text from '@/components/ui/Text'
 import { Colors } from '@/constants/Colors'
 import { RESERVATIONS } from '@/constants/localstorage'
@@ -20,7 +21,7 @@ interface IAddEditReservationProps {
 
 const AddEditReservation = (props: IAddEditReservationProps) => {
     const {reservation, handleClose, refresh, onSuccess} = props
-    const {data, handleChange, isValid, getValidationError} = useReservationForm(reservation)
+    const {data, handleChange, isValid, getValidationError, isProfileLoaded} = useReservationForm(reservation)
     const [error, setError] = useState('')
 
     const handleSaveReservation = async () => {
@@ -53,9 +54,18 @@ const AddEditReservation = (props: IAddEditReservationProps) => {
 
     const title = reservation ? 'reservation.editTitle' : 'reservation.title'
 
+    if (!reservation && !isProfileLoaded) {
+        return <LoaderPage />
+    }
+
     return (
       <PageWithHeader title={title}>
-          <ReservationDetails data={data} handleChange={handleChange} isEdit={true}/>
+          <ReservationDetails 
+            data={data} 
+            handleChange={handleChange} 
+            isEdit={true}
+            isNewReservation={!reservation}
+          />
           
           {error && <Text text={error} textColor={Colors.light.error} styles={{
               margin: 'auto',
@@ -79,8 +89,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         gap: 20,
-        marginTop: 'auto',
         height: 50,
+        marginTop: 20
     }
 })
 
