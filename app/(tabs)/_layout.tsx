@@ -23,7 +23,7 @@ export default function TabLayout() {
 
     const getResponsiveFontSize = () => {
         console.log('screenWidth', screenWidth)
-        return screenWidth < 415 ? 12 : 16
+        return screenWidth < 415 ? 14 : 16
     }
 
     const getTabLabelStyles = () => ({
