@@ -34,7 +34,8 @@
       "freeStarter": "\uD83E\uDD57 Free Starter",
       "20off": "\uD83D\uDCB8 20% Off",
       "freeMain": "\uD83E\uDD9E Free Main Coursew"
-    }
+    },
+    "mainTitle": "Ocean Points"
   },
   "field": {
     "name": "Name",

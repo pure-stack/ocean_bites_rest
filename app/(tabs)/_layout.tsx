@@ -1,20 +1,20 @@
-import {Redirect, Tabs} from 'expo-router'
+import { Redirect, Tabs } from 'expo-router'
 import React from 'react'
-import {Platform} from 'react-native'
+import { Platform } from 'react-native'
 
-import {HapticTab} from '@/components/HapticTab'
-import TabBarBackground from '@/components/ui/TabBarBackground'
 import MenuIcon from '@/assets/images/icons/MenuIcon'
-import ReservationIcon from '@/assets/images/icons/ReservationIcon'
 import PointsIcon from '@/assets/images/icons/PointsIcon'
 import ProfileIcon from '@/assets/images/icons/ProfileIcon'
-import {Colors} from '@/constants/Colors'
-import {IS_ONBOARDING_PASSED} from '@/constants/localstorage'
-import {getItem} from '@/utils/AsyncStorage'
-import {usePromiseState} from '@/hooks/usePromiseState'
+import ReservationIcon from '@/assets/images/icons/ReservationIcon'
+import { HapticTab } from '@/components/HapticTab'
 import LoaderPage from '@/components/ui/LoaderPage'
+import TabBarBackground from '@/components/ui/TabBarBackground'
 import Text from '@/components/ui/Text'
-import {ROUTES} from '@/constants/routes'
+import { Colors } from '@/constants/Colors'
+import { IS_ONBOARDING_PASSED } from '@/constants/localstorage'
+import { ROUTES } from '@/constants/routes'
+import { usePromiseState } from '@/hooks/usePromiseState'
+import { getItem } from '@/utils/AsyncStorage'
 
 export default function TabLayout() {
     const {data, isLoading} = usePromiseState(() => getItem(IS_ONBOARDING_PASSED), [])
@@ -69,7 +69,10 @@ export default function TabLayout() {
             options={{
                 tabBarLabel: ({focused}) => <Text
                   textColor={focused ? Colors.light.primary : Colors.light.third}
-                  text={'navbar.points'}/>,
+                  text={'points.mainTitle'}
+                  styles={{
+                    width: 100,
+                  }}/>,
                 tabBarIcon: ({color}) => <PointsIcon color={color}/>
             }}
           />
