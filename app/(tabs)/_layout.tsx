@@ -1,6 +1,6 @@
 import { Redirect, Tabs } from 'expo-router'
-import React from 'react'
-import { Platform } from 'react-native'
+import React, { useState } from 'react'
+import { Dimensions, Platform } from 'react-native'
 
 import MenuIcon from '@/assets/images/icons/MenuIcon'
 import PointsIcon from '@/assets/images/icons/PointsIcon'
@@ -18,6 +18,18 @@ import { getItem } from '@/utils/AsyncStorage'
 
 export default function TabLayout() {
     const {data, isLoading} = usePromiseState(() => getItem(IS_ONBOARDING_PASSED), [])
+    const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width)
+
+
+    const getResponsiveFontSize = () => {
+        console.log('screenWidth', screenWidth)
+        return screenWidth < 415 ? 12 : 16
+    }
+
+    const getTabLabelStyles = () => ({
+        fontSize: getResponsiveFontSize(),
+        textAlign: 'center',
+    })
 
     if (isLoading) {
         return <LoaderPage/>
@@ -52,7 +64,8 @@ export default function TabLayout() {
                 tabBarIcon: ({color}) => <MenuIcon color={color}/>,
                 tabBarLabel: ({focused}) => <Text
                   textColor={focused ? Colors.light.primary : Colors.light.third}
-                  text={'navbar.menu'}/>
+                  text={'navbar.menu'}
+                  styles={getTabLabelStyles()}/>
             }}
           />
           <Tabs.Screen
@@ -60,7 +73,8 @@ export default function TabLayout() {
             options={{
                 tabBarLabel: ({focused}) => <Text
                   textColor={focused ? Colors.light.primary : Colors.light.third}
-                  text={'navbar.reservation'}/>,
+                  text={'navbar.reservation'}
+                  styles={getTabLabelStyles()}/>,
                 tabBarIcon: ({color}) => <ReservationIcon color={color}/>
             }}
           />
@@ -70,9 +84,7 @@ export default function TabLayout() {
                 tabBarLabel: ({focused}) => <Text
                   textColor={focused ? Colors.light.primary : Colors.light.third}
                   text={'points.mainTitle'}
-                  styles={{
-                    width: 100,
-                  }}/>,
+                  styles={getTabLabelStyles()}/>,
                 tabBarIcon: ({color}) => <PointsIcon color={color}/>
             }}
           />
@@ -82,7 +94,8 @@ export default function TabLayout() {
                 tabBarIcon: ({color}) => <ProfileIcon color={color}/>,
                 tabBarLabel: ({focused}) => <Text
                   textColor={focused ? Colors.light.primary : Colors.light.third}
-                  text={'navbar.profile'}/>
+                  text={'navbar.profile'}
+                  styles={getTabLabelStyles()}/>
             }}
           />
       </Tabs>
