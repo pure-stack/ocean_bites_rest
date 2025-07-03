@@ -3,6 +3,7 @@ import { getRandomId } from '@/utils/getRandomId'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import { WebView as RNWebView } from 'react-native-webview'
+import {useIsFocused} from '@react-navigation/native'
 
 interface IWebViewProps {
 	uri: string
@@ -11,6 +12,14 @@ interface IWebViewProps {
 const WebView = (props: IWebViewProps) => {
 	const { uri } = props
 	const [isLoading, setIsLoading] = useState(true)
+
+	const isFocused = useIsFocused()
+
+	useEffect(() => {
+		if (isFocused) {
+			setIsLoading(true)
+		}
+	}, [isFocused])
 
 	useEffect(() => {
 		if (uri) {

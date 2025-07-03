@@ -164,7 +164,7 @@ const Onboarding = () => {
 							<Button
 								onPress={handleSkip}
 								title={'button.skip'}
-								bgColor={Colors.dark.primary}
+								bgColor={Colors.light.primary}
 							/>
 						</View>
 					</View>

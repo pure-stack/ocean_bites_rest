@@ -74,7 +74,7 @@
 		"scanQr": "Scan QR to earn",
 		"scanQrCode": "Scan QR-code",
 		"backToApp": "Back to App",
-		"skip": "Skip"
+		"skip": "Skip onboarding"
 	},
 	"error": {
 		"empty": "Fields cannot be empty!",
