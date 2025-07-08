@@ -14,7 +14,7 @@ const Index = () => {
             const isOnboardingPassed = await getItem(IS_ONBOARDING_PASSED)
 
             if (isOnboardingPassed) {
-                setRedirect(ROUTES.MENU)
+                setRedirect(ROUTES.POINTS)
             } else {
                 setRedirect(ROUTES.ONBOARDING)
             }

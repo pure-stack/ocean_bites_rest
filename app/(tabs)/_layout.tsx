@@ -1,20 +1,20 @@
-import { Redirect, Tabs } from 'expo-router'
-import React, { useState } from 'react'
-import { Dimensions, Platform } from 'react-native'
+import {Redirect, Tabs} from 'expo-router'
+import React, {useState} from 'react'
+import {Dimensions, Platform} from 'react-native'
 
 import MenuIcon from '@/assets/images/icons/MenuIcon'
 import PointsIcon from '@/assets/images/icons/PointsIcon'
 import ProfileIcon from '@/assets/images/icons/ProfileIcon'
 import ReservationIcon from '@/assets/images/icons/ReservationIcon'
-import { HapticTab } from '@/components/HapticTab'
+import {HapticTab} from '@/components/HapticTab'
 import LoaderPage from '@/components/ui/LoaderPage'
 import TabBarBackground from '@/components/ui/TabBarBackground'
 import Text from '@/components/ui/Text'
-import { Colors } from '@/constants/Colors'
-import { IS_ONBOARDING_PASSED } from '@/constants/localstorage'
-import { ROUTES } from '@/constants/routes'
-import { usePromiseState } from '@/hooks/usePromiseState'
-import { getItem } from '@/utils/AsyncStorage'
+import {Colors} from '@/constants/Colors'
+import {IS_ONBOARDING_PASSED} from '@/constants/localstorage'
+import {ROUTES} from '@/constants/routes'
+import {usePromiseState} from '@/hooks/usePromiseState'
+import {getItem} from '@/utils/AsyncStorage'
 
 export default function TabLayout() {
     const {data, isLoading} = usePromiseState(() => getItem(IS_ONBOARDING_PASSED), [])
@@ -28,7 +28,7 @@ export default function TabLayout() {
 
     const getTabLabelStyles = () => ({
         fontSize: getResponsiveFontSize(),
-        textAlign: 'center',
+        textAlign: 'center'
     })
 
     if (isLoading) {
@@ -59,16 +59,6 @@ export default function TabLayout() {
             }
         }}>
           <Tabs.Screen
-            name="menu"
-            options={{
-                tabBarIcon: ({color}) => <MenuIcon color={color}/>,
-                tabBarLabel: ({focused}) => <Text
-                  textColor={focused ? Colors.light.primary : Colors.light.third}
-                  text={'navbar.menu'}
-                  styles={getTabLabelStyles()}/>
-            }}
-          />
-          <Tabs.Screen
             name="reservation"
             options={{
                 tabBarLabel: ({focused}) => <Text
@@ -95,6 +85,16 @@ export default function TabLayout() {
                 tabBarLabel: ({focused}) => <Text
                   textColor={focused ? Colors.light.primary : Colors.light.third}
                   text={'navbar.profile'}
+                  styles={getTabLabelStyles()}/>
+            }}
+          />
+          <Tabs.Screen
+            name="menu"
+            options={{
+                tabBarIcon: ({color}) => <MenuIcon color={color}/>,
+                tabBarLabel: ({focused}) => <Text
+                  textColor={focused ? Colors.light.primary : Colors.light.third}
+                  text={'navbar.menu'}
                   styles={getTabLabelStyles()}/>
             }}
           />
